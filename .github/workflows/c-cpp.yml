@@ -1,0 +1,21 @@
+name: boost-treewidth
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: dependencies
+      run: sudo apt-get update && sudo apt-get -y install make autoconf && sudo apt-get install -y libboost-dev
+    - name: build
+      run: make compile
+    - name: test
+      run: make test
